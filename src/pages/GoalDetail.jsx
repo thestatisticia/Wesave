@@ -23,7 +23,7 @@ import { useWallet } from '../contexts/WalletContext';
 const GoalDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const { getGoalById, addTransaction, completeGoal, getTransactionsByGoal } = useGoals();
+  const { getGoalById, addTransaction } = useGoals();
   const { isConnected } = useWallet();
   const [goal, setGoal] = useState(null);
   const [isLoading, setIsLoading] = useState(true);

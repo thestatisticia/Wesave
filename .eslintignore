@@ -1,0 +1,9 @@
+dist/
+node_modules/
+contracts/
+scripts/
+hardhat.config.cjs
+artifacts/
+cache/
+typechain/
+.eslintrc.js

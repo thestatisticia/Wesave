@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 import React, { createContext, useContext } from 'react';
 import { useContract } from '../hooks/useContract';
 
@@ -22,7 +23,7 @@ export const GoalsProvider = ({ children }) => {
       return await contract.createGoal(goalData);
     };
 
-    const updateGoal = async (goalId, updates) => {
+    const updateGoal = async () => {
       // For smart contract integration, we'll refresh goals instead of local updates
       await contract.fetchGoals();
     };

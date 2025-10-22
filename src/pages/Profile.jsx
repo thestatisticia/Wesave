@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { 
   User, 
   Calendar, 
@@ -18,7 +18,7 @@ import { useWallet } from '../contexts/WalletContext';
 import { useTheme } from '../contexts/ThemeContext';
 
 const Profile = () => {
-  const { address, balance, disconnectWallet } = useWallet();
+  const { address, disconnectWallet } = useWallet();
   const { isDark, toggleTheme } = useTheme();
   const [isEditing, setIsEditing] = useState(false);
   const [userProfile, setUserProfile] = useState({

@@ -21,7 +21,7 @@ import { useGoals } from '../contexts/GoalsContext';
 
 const Dashboard = () => {
   const navigate = useNavigate();
-  const { address, balance, refreshBalance, isConnected } = useWallet();
+  const { address, balance, isConnected } = useWallet();
   const { goals, isLoading, fetchGoals, deleteGoal } = useGoals();
   const [searchTerm, setSearchTerm] = useState('');
   const [filterStatus, setFilterStatus] = useState('all');

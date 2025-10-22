@@ -21,4 +21,18 @@ export default defineConfig({
   optimizeDeps: {
     include: ['buffer'],
   },
+  build: {
+    chunkSizeWarningLimit: 1000,
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          vendor: ['react', 'react-dom'],
+          router: ['react-router-dom'],
+          ui: ['lucide-react'],
+          blockchain: ['ethers', 'viem'],
+          utils: ['react-hot-toast'],
+        },
+      },
+    },
+  },
 })

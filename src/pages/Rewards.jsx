@@ -155,7 +155,7 @@ const Rewards = () => {
     }
   };
 
-  const handleDownloadNFT = (reward) => {
+  const handleDownloadNFT = () => {
     toast.success('NFT download started!');
     // In a real app, this would trigger NFT download
   };

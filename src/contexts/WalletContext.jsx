@@ -1,5 +1,6 @@
-import { createContext, useContext, useState, useEffect } from 'react';
-import { createWalletClient, createPublicClient, http, formatEther } from 'viem';
+/* eslint-disable react-refresh/only-export-components */
+import { createContext, useContext, useState, useEffect, useCallback } from 'react';
+import { createPublicClient, http, formatEther } from 'viem';
 import { celoAlfajores } from 'viem/chains';
 import toast from 'react-hot-toast';
 
@@ -73,7 +74,7 @@ export const WalletProvider = ({ children }) => {
   };
 
   // Check current network
-  const checkNetwork = async () => {
+  const checkNetwork = useCallback(async () => {
     if (typeof window.ethereum !== 'undefined') {
       try {
         const chainId = await window.ethereum.request({ method: 'eth_chainId' });
@@ -87,7 +88,7 @@ export const WalletProvider = ({ children }) => {
       }
     }
     return false;
-  };
+  }, [CELO_TESTNET_CONFIG.chainId]);
 
   const connectWallet = async () => {
     setIsConnecting(true);
@@ -140,7 +141,7 @@ export const WalletProvider = ({ children }) => {
     setBalance('0');
   };
 
-  const refreshBalance = async () => {
+  const refreshBalance = useCallback(async () => {
     if (address && isCorrectNetwork) {
       try {
         const balance = await publicClient.getBalance({
@@ -153,7 +154,7 @@ export const WalletProvider = ({ children }) => {
         toast.error('Failed to fetch balance');
       }
     }
-  };
+  }, [address, isCorrectNetwork, publicClient]);
 
   useEffect(() => {
     // Check if wallet is already connected
@@ -213,7 +214,7 @@ export const WalletProvider = ({ children }) => {
         window.ethereum.removeAllListeners('chainChanged');
       }
     };
-  }, [address, isCorrectNetwork]);
+  }, [address, isCorrectNetwork, CELO_TESTNET_CONFIG.chainId, checkNetwork, refreshBalance]);
 
   const value = {
     isConnected,

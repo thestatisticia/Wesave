@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useWallet } from '../contexts/WalletContext';
 import { CONTRACT_CONFIG, GOAL_STATUS, TRANSACTION_TYPE } from '../config/contract';
-import { createPublicClient, http, parseEther, formatEther } from 'viem';
+import { createPublicClient, http, formatEther } from 'viem';
 import { celoAlfajores } from 'viem/chains';
 import { ethers } from 'ethers';
 import toast from 'react-hot-toast';

@@ -151,13 +151,6 @@ const Community = () => {
     }).format(amount);
   };
 
-  const formatDate = (dateString) => {
-    return new Date(dateString).toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: 'short',
-      day: 'numeric'
-    });
-  };
 
   const getDaysLeft = (deadline) => {
     const today = new Date();
@@ -167,7 +160,7 @@ const Community = () => {
     return diffDays > 0 ? diffDays : 0;
   };
 
-  const handleJoinCircle = (circleId) => {
+  const handleJoinCircle = () => {
     toast.success('Successfully joined the savings circle!');
     // In a real app, this would update the circle membership
   };

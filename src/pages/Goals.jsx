@@ -53,7 +53,6 @@ const Goals = () => {
     });
 
   const totalSaved = goals.reduce((sum, goal) => sum + goal.currentAmount, 0);
-  const totalTarget = goals.reduce((sum, goal) => sum + goal.targetAmount, 0);
   const completedGoals = goals.filter(goal => goal.status === 'completed').length;
   const activeGoals = goals.filter(goal => goal.status === 'active').length;
 

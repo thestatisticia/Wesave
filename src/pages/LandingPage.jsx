@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { 
   Target, 
@@ -17,8 +17,8 @@ import { useWallet } from '../contexts/WalletContext';
 
 const LandingPage = () => {
   const navigate = useNavigate();
-  const { isDark, toggleTheme } = useTheme();
-  const { connectWallet, isConnected, isCorrectNetwork, switchToCeloTestnet, isConnecting } = useWallet();
+  const { toggleTheme } = useTheme();
+  const { connectWallet, isConnected, isCorrectNetwork, switchToCeloTestnet, isConnecting, address, balance } = useWallet();
 
   const handleGetStarted = () => {
     // Always navigate to app, regardless of wallet connection status
