@@ -3,7 +3,7 @@ import { useWallet } from '../contexts/WalletContext';
 import { CONTRACT_CONFIG, GOAL_STATUS, TRANSACTION_TYPE } from '../config/contract';
 import { createPublicClient, http, formatEther } from 'viem';
 import { celoAlfajores } from 'viem/chains';
-import { ethers } from 'ethers';
+import { ethers, BrowserProvider, JsonRpcProvider } from 'ethers';
 import toast from 'react-hot-toast';
 
 // Create public client outside the hook to prevent recreation
@@ -127,7 +127,7 @@ export const useContract = () => {
       console.log('Starting goal creation on blockchain...');
       
       // Use ethers.js for transactions
-      const provider = new ethers.providers.Web3Provider(window.ethereum);
+      const provider = new BrowserProvider(window.ethereum);
       const signer = provider.getSigner();
       const contract = new ethers.Contract(
         CONTRACT_CONFIG.address,
@@ -139,7 +139,7 @@ export const useContract = () => {
       const tx = await contract.createGoal(
         goalData.title, // This will be stored as 'name' in the contract
         goalData.description,
-        ethers.utils.parseEther(goalData.targetAmount.toString()),
+        ethers.parseEther(goalData.targetAmount.toString()),
         Math.floor(goalData.deadline.getTime() / 1000),
         goalData.category || 'Other'
       );
@@ -184,7 +184,7 @@ export const useContract = () => {
       console.log('Starting deposit on blockchain...');
       
       // Use ethers.js for transactions (same as createGoal)
-      const provider = new ethers.providers.Web3Provider(window.ethereum);
+      const provider = new BrowserProvider(window.ethereum);
       const signer = provider.getSigner();
       const contract = new ethers.Contract(
         CONTRACT_CONFIG.address,
@@ -197,7 +197,7 @@ export const useContract = () => {
         goalId,
         description,
         { 
-          value: ethers.utils.parseEther(amount.toString())
+          value: ethers.parseEther(amount.toString())
         }
       );
 
@@ -239,7 +239,7 @@ export const useContract = () => {
       console.log('Starting withdrawal on blockchain...');
       
       // Use ethers.js for transactions (same as createGoal)
-      const provider = new ethers.providers.Web3Provider(window.ethereum);
+      const provider = new BrowserProvider(window.ethereum);
       const signer = provider.getSigner();
       const contract = new ethers.Contract(
         CONTRACT_CONFIG.address,
@@ -250,7 +250,7 @@ export const useContract = () => {
       console.log('Calling withdraw on contract...');
       const tx = await contract.withdraw(
         goalId,
-        ethers.utils.parseEther(amount.toString()),
+        ethers.parseEther(amount.toString()),
         description
       );
 
@@ -287,7 +287,7 @@ export const useContract = () => {
     try {
       setIsLoading(true);
       
-      const provider = new ethers.providers.Web3Provider(window.ethereum);
+      const provider = new BrowserProvider(window.ethereum);
       const signer = provider.getSigner();
       const contract = new ethers.Contract(
         CONTRACT_CONFIG.address,
@@ -329,7 +329,7 @@ export const useContract = () => {
       setIsLoading(true);
       console.log('Starting goal deletion:', { goalId });
       
-      const provider = new ethers.providers.Web3Provider(window.ethereum);
+      const provider = new BrowserProvider(window.ethereum);
       const signer = provider.getSigner();
       const contract = new ethers.Contract(
         CONTRACT_CONFIG.address,
@@ -422,7 +422,7 @@ export const useContract = () => {
       console.log('Checking goal state for ID:', goalId);
       
       // Use public client for read-only operations
-      const provider = new ethers.providers.JsonRpcProvider('https://alfajores-forno.celo-testnet.org');
+      const provider = new JsonRpcProvider('https://alfajores-forno.celo-testnet.org');
       const contract = new ethers.Contract(
         CONTRACT_CONFIG.address,
         CONTRACT_CONFIG.abi,
@@ -436,8 +436,8 @@ export const useContract = () => {
         exists: goalDetails.exists,
         owner: goalDetails.owner,
         status: goalDetails.status,
-        currentAmount: ethers.utils.formatEther(goalDetails.currentAmount),
-        targetAmount: ethers.utils.formatEther(goalDetails.targetAmount),
+        currentAmount: ethers.formatEther(goalDetails.currentAmount),
+        targetAmount: ethers.formatEther(goalDetails.targetAmount),
         deadline: new Date(goalDetails.deadline.toNumber() * 1000).toISOString(),
         isExpired: currentTime > goalDetails.deadline.toNumber(),
         isOwner: goalDetails.owner.toLowerCase() === account.toLowerCase()
