@@ -13,7 +13,7 @@ describe("WeSave Contract", function () {
     
     const WeSave = await ethers.getContractFactory("WeSave");
     weSave = await WeSave.deploy();
-    await weSave.deployed();
+    await weSave.waitForDeployment();
   });
 
   describe("Deployment", function () {

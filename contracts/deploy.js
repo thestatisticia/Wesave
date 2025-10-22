@@ -10,14 +10,15 @@ async function main() {
   const weSave = await WeSave.deploy();
 
   // Wait for deployment to finish
-  await weSave.deployed();
+  await weSave.waitForDeployment();
 
-  console.log("WeSave contract deployed to:", weSave.address);
-  console.log("Transaction hash:", weSave.deployTransaction.hash);
+  const contractAddress = await weSave.getAddress();
+  console.log("WeSave contract deployed to:", contractAddress);
+  console.log("Transaction hash:", weSave.deploymentTransaction().hash);
   
   // Verify contract on blockchain explorer (if needed)
   console.log("\nTo verify the contract, run:");
-  console.log(`npx hardhat verify --network alfajores ${weSave.address}`);
+  console.log(`npx hardhat verify --network alfajores ${contractAddress}`);
 }
 
 main()
