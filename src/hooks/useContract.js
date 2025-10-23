@@ -116,6 +116,8 @@ export const useContract = () => {
   const createGoal = async (goalData) => {
     console.log('createGoal called with:', goalData);
     console.log('isConnected:', isConnected, 'account:', account);
+    console.log('Contract address:', CONTRACT_CONFIG.address);
+    console.log('Contract ABI length:', CONTRACT_CONFIG.abi.length);
     
     if (!isConnected || !account) {
       toast.error('Please connect your wallet');
@@ -128,18 +130,36 @@ export const useContract = () => {
       
       // Use ethers.js for transactions
       const provider = new BrowserProvider(window.ethereum);
-      const signer = provider.getSigner();
+      const signer = await provider.getSigner();
       const contract = new ethers.Contract(
         CONTRACT_CONFIG.address,
         CONTRACT_CONFIG.abi,
         signer
       );
 
+      // Validate target amount against contract constants
+      const targetAmountWei = ethers.parseEther(goalData.targetAmount.toString());
+      console.log('Target amount in wei:', targetAmountWei.toString());
+      
+      // Get contract constants for validation
+      const minAmount = await contract.MIN_GOAL_AMOUNT();
+      const maxAmount = await contract.MAX_GOAL_AMOUNT();
+      
+      console.log('Contract limits:', {
+        minAmount: ethers.formatEther(minAmount),
+        maxAmount: ethers.formatEther(maxAmount),
+        targetAmount: goalData.targetAmount
+      });
+      
+      if (targetAmountWei < minAmount || targetAmountWei > maxAmount) {
+        throw new Error(`Target amount must be between ${ethers.formatEther(minAmount)} and ${ethers.formatEther(maxAmount)} ETH`);
+      }
+
       console.log('Calling createGoal on contract...');
       const tx = await contract.createGoal(
         goalData.title, // This will be stored as 'name' in the contract
         goalData.description,
-        ethers.parseEther(goalData.targetAmount.toString()),
+        targetAmountWei,
         Math.floor(goalData.deadline.getTime() / 1000),
         goalData.category || 'Other'
       );
@@ -185,7 +205,7 @@ export const useContract = () => {
       
       // Use ethers.js for transactions (same as createGoal)
       const provider = new BrowserProvider(window.ethereum);
-      const signer = provider.getSigner();
+      const signer = await provider.getSigner();
       const contract = new ethers.Contract(
         CONTRACT_CONFIG.address,
         CONTRACT_CONFIG.abi,
@@ -240,7 +260,7 @@ export const useContract = () => {
       
       // Use ethers.js for transactions (same as createGoal)
       const provider = new BrowserProvider(window.ethereum);
-      const signer = provider.getSigner();
+      const signer = await provider.getSigner();
       const contract = new ethers.Contract(
         CONTRACT_CONFIG.address,
         CONTRACT_CONFIG.abi,
@@ -288,7 +308,7 @@ export const useContract = () => {
       setIsLoading(true);
       
       const provider = new BrowserProvider(window.ethereum);
-      const signer = provider.getSigner();
+      const signer = await provider.getSigner();
       const contract = new ethers.Contract(
         CONTRACT_CONFIG.address,
         CONTRACT_CONFIG.abi,
@@ -330,7 +350,7 @@ export const useContract = () => {
       console.log('Starting goal deletion:', { goalId });
       
       const provider = new BrowserProvider(window.ethereum);
-      const signer = provider.getSigner();
+      const signer = await provider.getSigner();
       const contract = new ethers.Contract(
         CONTRACT_CONFIG.address,
         CONTRACT_CONFIG.abi,
