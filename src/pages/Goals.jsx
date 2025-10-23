@@ -90,8 +90,8 @@ const Goals = () => {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
-          <div className="w-16 h-16 border-4 border-primary-200 border-t-primary-600 rounded-full animate-spin mx-auto mb-4"></div>
-          <p className="text-accent-600 dark:text-accent-400">Loading your goals...</p>
+           <div className="w-16 h-16 border-4 border-gray-200 border-t-blue-600 rounded-full animate-spin mx-auto mb-4"></div>
+          <p className="text-gray-600 dark:text-gray-400">Loading your goals...</p>
         </div>
       </div>
     );
@@ -104,10 +104,10 @@ const Goals = () => {
         <div className="mb-8">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <div>
-              <h1 className="text-3xl md:text-4xl font-bold text-accent-900 dark:text-white mb-2">
+              <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-2">
                 All Goals 🎯
               </h1>
-              <p className="text-accent-600 dark:text-accent-400">
+              <p className="text-gray-600 dark:text-gray-400">
                 Manage and track all your savings goals
               </p>
             </div>
@@ -126,8 +126,8 @@ const Goals = () => {
           <div className="card">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-accent-600 dark:text-accent-400 mb-1">Total Goals</p>
-                <p className="text-2xl font-bold text-accent-900 dark:text-white">
+                <p className="text-sm text-gray-600 dark:text-gray-400 mb-1">Total Goals</p>
+                <p className="text-2xl font-bold text-gray-900 dark:text-white">
                   {goals.length}
                 </p>
               </div>
@@ -140,8 +140,8 @@ const Goals = () => {
           <div className="card">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-accent-600 dark:text-accent-400 mb-1">Active Goals</p>
-                <p className="text-2xl font-bold text-accent-900 dark:text-white">
+                <p className="text-sm text-gray-600 dark:text-gray-400 mb-1">Active Goals</p>
+                <p className="text-2xl font-bold text-gray-900 dark:text-white">
                   {activeGoals}
                 </p>
               </div>
@@ -154,8 +154,8 @@ const Goals = () => {
           <div className="card">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-accent-600 dark:text-accent-400 mb-1">Completed</p>
-                <p className="text-2xl font-bold text-accent-900 dark:text-white">
+                <p className="text-sm text-gray-600 dark:text-gray-400 mb-1">Completed</p>
+                <p className="text-2xl font-bold text-gray-900 dark:text-white">
                   {completedGoals}
                 </p>
               </div>
@@ -168,8 +168,8 @@ const Goals = () => {
           <div className="card">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-accent-600 dark:text-accent-400 mb-1">Total Saved</p>
-                <p className="text-2xl font-bold text-accent-900 dark:text-white">
+                <p className="text-sm text-gray-600 dark:text-gray-400 mb-1">Total Saved</p>
+                <p className="text-2xl font-bold text-gray-900 dark:text-white">
                   {formatCurrency(totalSaved)}
                 </p>
               </div>
@@ -183,22 +183,22 @@ const Goals = () => {
         {/* Filters and Search */}
         <div className="flex flex-col lg:flex-row gap-4 mb-8">
           <div className="relative flex-1">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-accent-400 w-5 h-5" />
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
             <input
               type="text"
               placeholder="Search goals..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-10 pr-4 py-3 bg-white dark:bg-accent-800 border border-accent-200 dark:border-accent-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+              className="w-full pl-10 pr-4 py-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             />
           </div>
           
           <div className="relative">
-            <Filter className="absolute left-3 top-1/2 transform -translate-y-1/2 text-accent-400 w-5 h-5" />
+            <Filter className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
             <select
               value={filterStatus}
               onChange={(e) => setFilterStatus(e.target.value)}
-              className="pl-10 pr-8 py-3 bg-white dark:bg-accent-800 border border-accent-200 dark:border-accent-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent appearance-none"
+              className="pl-10 pr-8 py-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent appearance-none"
             >
               <option value="all">All Status</option>
               <option value="active">Active</option>
@@ -211,7 +211,7 @@ const Goals = () => {
             <select
               value={filterCategory}
               onChange={(e) => setFilterCategory(e.target.value)}
-              className="pl-4 pr-8 py-3 bg-white dark:bg-accent-800 border border-accent-200 dark:border-accent-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent appearance-none"
+              className="pl-4 pr-8 py-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent appearance-none"
             >
               <option value="all">All Categories</option>
               {categories.map(category => (
@@ -224,7 +224,7 @@ const Goals = () => {
             <select
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value)}
-              className="pl-4 pr-8 py-3 bg-white dark:bg-accent-800 border border-accent-200 dark:border-accent-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent appearance-none"
+              className="pl-4 pr-8 py-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent appearance-none"
             >
               <option value="createdAt">Newest First</option>
               <option value="name">Name A-Z</option>
@@ -248,13 +248,13 @@ const Goals = () => {
               >
                 <div className="flex items-start justify-between mb-4">
                   <div className="flex-1">
-                    <h3 className="text-lg font-semibold text-accent-900 dark:text-white mb-1">
+                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-1">
                       {goal.title}
                     </h3>
-                    <p className="text-sm text-accent-600 dark:text-accent-400 mb-2">
+                    <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">
                       {goal.category}
                     </p>
-                    <p className="text-sm text-accent-700 dark:text-accent-300 line-clamp-2">
+                     <p className="text-sm text-gray-700 dark:text-gray-300 line-clamp-2">
                       {goal.description}
                     </p>
                   </div>
@@ -275,13 +275,13 @@ const Goals = () => {
 
                 <div className="space-y-3">
                   <div className="flex justify-between items-center">
-                    <span className="text-sm text-accent-600 dark:text-accent-400">Progress</span>
-                    <span className="text-sm font-medium text-accent-900 dark:text-white">
+                    <span className="text-sm text-gray-600 dark:text-gray-400">Progress</span>
+                    <span className="text-sm font-medium text-gray-900 dark:text-white">
                       {formatCurrency(goal.currentAmount)} / {formatCurrency(goal.targetAmount)}
                     </span>
                   </div>
 
-                  <div className="w-full bg-accent-200 dark:bg-accent-700 rounded-full h-2">
+                   <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
                     <div
                       className="h-2 rounded-full transition-all duration-500"
                       style={{
@@ -292,11 +292,11 @@ const Goals = () => {
                   </div>
 
                   <div className="flex justify-between items-center text-sm">
-                    <div className="flex items-center space-x-1 text-accent-600 dark:text-accent-400">
+                    <div className="flex items-center space-x-1 text-gray-600 dark:text-gray-400">
                       <Calendar className="w-4 h-4" />
                       <span>{daysLeft} days left</span>
                     </div>
-                    <div className="flex items-center space-x-1 text-accent-600 dark:text-accent-400">
+                    <div className="flex items-center space-x-1 text-gray-600 dark:text-gray-400">
                       <TrendingUp className="w-4 h-4" />
                       <span>{percentage}%</span>
                     </div>
@@ -334,16 +334,16 @@ const Goals = () => {
 
         {filteredAndSortedGoals.length === 0 && (
           <div className="text-center py-12">
-            <div className="w-24 h-24 bg-accent-100 dark:bg-accent-800 rounded-full flex items-center justify-center mx-auto mb-4">
-              <Target className="w-12 h-12 text-accent-400" />
+             <div className="w-24 h-24 bg-gray-100 dark:bg-gray-800 rounded-full flex items-center justify-center mx-auto mb-4">
+              <Target className="w-12 h-12 text-gray-400" />
             </div>
-            <h3 className="text-xl font-semibold text-accent-900 dark:text-white mb-2">
+            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
               {searchTerm || filterStatus !== 'all' || filterCategory !== 'all'
                 ? 'No goals match your criteria'
                 : 'No goals found'
               }
             </h3>
-            <p className="text-accent-600 dark:text-accent-400 mb-6">
+            <p className="text-gray-600 dark:text-gray-400 mb-6">
               {searchTerm || filterStatus !== 'all' || filterCategory !== 'all'
                 ? 'Try adjusting your search or filter criteria'
                 : 'Start your savings journey by creating your first goal'

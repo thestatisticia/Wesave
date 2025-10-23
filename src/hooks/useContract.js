@@ -124,6 +124,11 @@ export const useContract = () => {
       return null;
     }
 
+    if (!goalData || !goalData.title || !goalData.targetAmount) {
+      toast.error('Invalid goal data provided');
+      return null;
+    }
+
     try {
       setIsLoading(true);
       console.log('Starting goal creation on blockchain...');
@@ -174,9 +179,31 @@ export const useContract = () => {
       if (receipt.status === 1) {
         toast.success('Goal created successfully on blockchain!');
         await fetchGoals(); // Refresh goals
-        // Extract goal ID from event logs
-        const event = receipt.events.find(e => e.event === 'GoalCreated');
-        return event ? event.args.goalId.toString() : 'unknown';
+        
+        // Extract goal ID from event logs using ethers v6 method
+        let goalId = 'unknown';
+        try {
+          // Parse the logs using the contract interface
+          const parsedLogs = receipt.logs.map(log => {
+            try {
+              return contract.interface.parseLog(log);
+            } catch (e) {
+              return null;
+            }
+          }).filter(log => log !== null);
+          
+          // Find the GoalCreated event
+          const goalCreatedEvent = parsedLogs.find(log => log.name === 'GoalCreated');
+          if (goalCreatedEvent) {
+            goalId = goalCreatedEvent.args.goalId.toString();
+          }
+        } catch (eventError) {
+          console.warn('Could not extract goal ID from receipt:', eventError);
+          // Fallback: return a simple success indicator
+          goalId = 'success';
+        }
+        
+        return goalId;
       } else {
         throw new Error('Transaction failed');
       }

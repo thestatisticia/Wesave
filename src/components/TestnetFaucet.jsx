@@ -84,7 +84,7 @@ const TestnetFaucet = ({ address, onClose }) => {
             {faucetUrls.map((faucet, index) => (
               <div
                 key={index}
-                className="border border-accent-200 dark:border-accent-700 rounded-lg p-3 hover:bg-accent-50 dark:hover:bg-accent-900 transition-colors"
+                className="border border-gray-200 dark:border-gray-700 rounded-lg p-3 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
               >
                 <div className="flex items-center justify-between">
                   <div>

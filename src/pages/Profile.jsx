@@ -91,10 +91,10 @@ const Profile = () => {
       <div className="max-w-4xl mx-auto">
         {/* Header */}
         <div className="mb-8">
-          <h1 className="text-3xl md:text-4xl font-bold text-accent-900 dark:text-white mb-2">
+          <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-2">
             Profile Settings
           </h1>
-          <p className="text-accent-600 dark:text-accent-400">
+          <p className="text-gray-600 dark:text-gray-400">
             Manage your account and preferences
           </p>
         </div>
@@ -121,26 +121,26 @@ const Profile = () => {
               {isEditing ? (
                 <div className="space-y-4">
                   <div>
-                    <label className="block text-sm font-medium text-accent-700 dark:text-accent-300 mb-2">
+                     <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                       Display Name
                     </label>
                     <input
                       type="text"
                       value={editForm.name}
                       onChange={(e) => setEditForm({...editForm, name: e.target.value})}
-                      className="w-full px-4 py-3 bg-white dark:bg-accent-900 border border-accent-200 dark:border-accent-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                      className="w-full px-4 py-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                     />
                   </div>
                   
                   <div>
-                    <label className="block text-sm font-medium text-accent-700 dark:text-accent-300 mb-2">
+                     <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                       Bio
                     </label>
                     <textarea
                       value={editForm.bio}
                       onChange={(e) => setEditForm({...editForm, bio: e.target.value})}
                       rows={3}
-                      className="w-full px-4 py-3 bg-white dark:bg-accent-900 border border-accent-200 dark:border-accent-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                      className="w-full px-4 py-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                     />
                   </div>
 
@@ -163,13 +163,13 @@ const Profile = () => {
                 </div>
               ) : (
                 <div>
-                  <h2 className="text-2xl font-bold text-accent-900 dark:text-white mb-2">
+                  <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
                     {userProfile.name}
                   </h2>
-                  <p className="text-accent-600 dark:text-accent-400 mb-4">
+                  <p className="text-gray-600 dark:text-gray-400 mb-4">
                     {userProfile.bio}
                   </p>
-                  <div className="flex items-center space-x-4 text-sm text-accent-600 dark:text-accent-400">
+                  <div className="flex items-center space-x-4 text-sm text-gray-600 dark:text-gray-400">
                     <div className="flex items-center space-x-1">
                       <Calendar className="w-4 h-4" />
                       <span>Joined {formatDate(userProfile.joinDate)}</span>
@@ -191,10 +191,10 @@ const Profile = () => {
             <div className="w-12 h-12 bg-gradient-emerald rounded-xl flex items-center justify-center mx-auto mb-3">
               <Target className="w-6 h-6 text-white" />
             </div>
-            <p className="text-2xl font-bold text-accent-900 dark:text-white">
+            <p className="text-2xl font-bold text-gray-900 dark:text-white">
               {stats.totalGoals}
             </p>
-            <p className="text-sm text-accent-600 dark:text-accent-400">
+            <p className="text-sm text-gray-600 dark:text-gray-400">
               Total Goals
             </p>
           </div>
@@ -203,10 +203,10 @@ const Profile = () => {
             <div className="w-12 h-12 bg-gradient-teal rounded-xl flex items-center justify-center mx-auto mb-3">
               <Award className="w-6 h-6 text-white" />
             </div>
-            <p className="text-2xl font-bold text-accent-900 dark:text-white">
+            <p className="text-2xl font-bold text-gray-900 dark:text-white">
               {stats.completedGoals}
             </p>
-            <p className="text-sm text-accent-600 dark:text-accent-400">
+            <p className="text-sm text-gray-600 dark:text-gray-400">
               Completed
             </p>
           </div>
@@ -215,10 +215,10 @@ const Profile = () => {
             <div className="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-500 rounded-xl flex items-center justify-center mx-auto mb-3">
               <TrendingUp className="w-6 h-6 text-white" />
             </div>
-            <p className="text-2xl font-bold text-accent-900 dark:text-white">
+            <p className="text-2xl font-bold text-gray-900 dark:text-white">
               {formatCurrency(stats.totalSaved)}
             </p>
-            <p className="text-sm text-accent-600 dark:text-accent-400">
+            <p className="text-sm text-gray-600 dark:text-gray-400">
               Total Saved
             </p>
           </div>
@@ -227,10 +227,10 @@ const Profile = () => {
             <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-xl flex items-center justify-center mx-auto mb-3">
               <Calendar className="w-6 h-6 text-white" />
             </div>
-            <p className="text-2xl font-bold text-accent-900 dark:text-white">
+            <p className="text-2xl font-bold text-gray-900 dark:text-white">
               {stats.currentStreak}
             </p>
-            <p className="text-sm text-accent-600 dark:text-accent-400">
+            <p className="text-sm text-gray-600 dark:text-gray-400">
               Day Streak
             </p>
           </div>
@@ -239,10 +239,10 @@ const Profile = () => {
             <div className="w-12 h-12 bg-gradient-to-r from-yellow-500 to-orange-500 rounded-xl flex items-center justify-center mx-auto mb-3">
               <Award className="w-6 h-6 text-white" />
             </div>
-            <p className="text-2xl font-bold text-accent-900 dark:text-white">
+            <p className="text-2xl font-bold text-gray-900 dark:text-white">
               {stats.rewardsEarned}
             </p>
-            <p className="text-sm text-accent-600 dark:text-accent-400">
+            <p className="text-sm text-gray-600 dark:text-gray-400">
               Rewards
             </p>
           </div>
@@ -251,10 +251,10 @@ const Profile = () => {
             <div className="w-12 h-12 bg-gradient-to-r from-green-500 to-emerald-500 rounded-xl flex items-center justify-center mx-auto mb-3">
               <TrendingUp className="w-6 h-6 text-white" />
             </div>
-            <p className="text-2xl font-bold text-accent-900 dark:text-white">
+            <p className="text-2xl font-bold text-gray-900 dark:text-white">
               {stats.longestStreak}
             </p>
-            <p className="text-sm text-accent-600 dark:text-accent-400">
+            <p className="text-sm text-gray-600 dark:text-gray-400">
               Best Streak
             </p>
           </div>
@@ -263,21 +263,21 @@ const Profile = () => {
         {/* Settings */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
           <div className="card">
-            <h3 className="text-lg font-semibold text-accent-900 dark:text-white mb-4 flex items-center space-x-2">
+            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4 flex items-center space-x-2">
               <Settings className="w-5 h-5" />
               <span>Preferences</span>
             </h3>
             <div className="space-y-4">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="font-medium text-accent-900 dark:text-white">Dark Mode</p>
-                  <p className="text-sm text-accent-600 dark:text-accent-400">Toggle dark theme</p>
+                  <p className="font-medium text-gray-900 dark:text-white">Dark Mode</p>
+                  <p className="text-sm text-gray-600 dark:text-gray-400">Toggle dark theme</p>
                 </div>
                 <button
                   onClick={toggleTheme}
-                  className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-                    isDark ? 'bg-primary-600' : 'bg-accent-300'
-                  }`}
+                   className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
+                     isDark ? 'bg-blue-600' : 'bg-gray-300'
+                   }`}
                 >
                   <span
                     className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
@@ -289,13 +289,13 @@ const Profile = () => {
 
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="font-medium text-accent-900 dark:text-white">Notifications</p>
-                  <p className="text-sm text-accent-600 dark:text-accent-400">Get updates about your goals</p>
+                  <p className="font-medium text-gray-900 dark:text-white">Notifications</p>
+                  <p className="text-sm text-gray-600 dark:text-gray-400">Get updates about your goals</p>
                 </div>
                 <button
-                  className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-                    userProfile.preferences.notifications ? 'bg-primary-600' : 'bg-accent-300'
-                  }`}
+                   className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
+                     userProfile.preferences.notifications ? 'bg-blue-600' : 'bg-gray-300'
+                   }`}
                 >
                   <span
                     className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
@@ -306,12 +306,12 @@ const Profile = () => {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-accent-700 dark:text-accent-300 mb-2">
+                     <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                   Currency
                 </label>
                 <select
                   value={userProfile.preferences.currency}
-                  className="w-full px-4 py-3 bg-white dark:bg-accent-900 border border-accent-200 dark:border-accent-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                   className="w-full px-4 py-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 >
                   <option value="USD">USD</option>
                   <option value="EUR">EUR</option>
@@ -323,30 +323,30 @@ const Profile = () => {
           </div>
 
           <div className="card">
-            <h3 className="text-lg font-semibold text-accent-900 dark:text-white mb-4 flex items-center space-x-2">
+            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4 flex items-center space-x-2">
               <Award className="w-5 h-5" />
               <span>Achievements</span>
             </h3>
             <div className="space-y-3">
               {achievements.map((achievement, index) => (
-                <div key={index} className="flex items-center space-x-3 p-3 bg-accent-50 dark:bg-accent-800 rounded-lg">
-                  <div className={`w-6 h-6 rounded-full flex items-center justify-center ${
-                    achievement.earned ? 'bg-green-500' : 'bg-accent-200 dark:bg-accent-700'
-                  }`}>
-                    {achievement.earned ? (
-                      <Award className="w-4 h-4 text-white" />
-                    ) : (
-                      <div className="w-2 h-2 bg-accent-400 rounded-full" />
-                    )}
+                 <div key={index} className="flex items-center space-x-3 p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
+                   <div className={`w-6 h-6 rounded-full flex items-center justify-center ${
+                     achievement.earned ? 'bg-green-500' : 'bg-gray-200 dark:bg-gray-700'
+                   }`}>
+                     {achievement.earned ? (
+                       <Award className="w-4 h-4 text-white" />
+                     ) : (
+                       <div className="w-2 h-2 bg-gray-400 rounded-full" />
+                     )}
                   </div>
                   <div className="flex-1">
                     <p className={`font-medium ${
-                      achievement.earned ? 'text-accent-900 dark:text-white' : 'text-accent-600 dark:text-accent-400'
+                      achievement.earned ? 'text-gray-900 dark:text-white' : 'text-gray-600 dark:text-gray-400'
                     }`}>
                       {achievement.name}
                     </p>
                     {achievement.earned && achievement.date && (
-                      <p className="text-sm text-accent-600 dark:text-accent-400">
+                      <p className="text-sm text-gray-600 dark:text-gray-400">
                         Earned {formatDate(achievement.date)}
                       </p>
                     )}
@@ -359,24 +359,24 @@ const Profile = () => {
 
         {/* Account Actions */}
         <div className="card">
-          <h3 className="text-lg font-semibold text-accent-900 dark:text-white mb-4 flex items-center space-x-2">
+          <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4 flex items-center space-x-2">
             <Shield className="w-5 h-5" />
             <span>Account Actions</span>
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <button className="flex items-center space-x-3 p-4 bg-accent-50 dark:bg-accent-800 rounded-xl hover:bg-accent-100 dark:hover:bg-accent-700 transition-colors">
-              <HelpCircle className="w-5 h-5 text-accent-600 dark:text-accent-400" />
+            <button className="flex items-center space-x-3 p-4 bg-gray-50 dark:bg-gray-800 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
+              <HelpCircle className="w-5 h-5 text-gray-600 dark:text-gray-400" />
               <div className="text-left">
-                <p className="font-medium text-accent-900 dark:text-white">Help & Support</p>
-                <p className="text-sm text-accent-600 dark:text-accent-400">Get help</p>
+                <p className="font-medium text-gray-900 dark:text-white">Help & Support</p>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Get help</p>
               </div>
             </button>
 
-            <button className="flex items-center space-x-3 p-4 bg-accent-50 dark:bg-accent-800 rounded-xl hover:bg-accent-100 dark:hover:bg-accent-700 transition-colors">
-              <Bell className="w-5 h-5 text-accent-600 dark:text-accent-400" />
+            <button className="flex items-center space-x-3 p-4 bg-gray-50 dark:bg-gray-800 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
+              <Bell className="w-5 h-5 text-gray-600 dark:text-gray-400" />
               <div className="text-left">
-                <p className="font-medium text-accent-900 dark:text-white">Notification Settings</p>
-                <p className="text-sm text-accent-600 dark:text-accent-400">Manage alerts</p>
+                <p className="font-medium text-gray-900 dark:text-white">Notification Settings</p>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Manage alerts</p>
               </div>
             </button>
 

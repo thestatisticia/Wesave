@@ -244,7 +244,7 @@ const Rewards = () => {
               placeholder="Search rewards..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-10 pr-4 py-3 bg-white dark:bg-accent-800 border border-accent-200 dark:border-accent-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+              className="w-full pl-10 pr-4 py-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             />
           </div>
           
@@ -253,7 +253,7 @@ const Rewards = () => {
             <select
               value={filterType}
               onChange={(e) => setFilterType(e.target.value)}
-              className="pl-10 pr-8 py-3 bg-white dark:bg-accent-800 border border-accent-200 dark:border-accent-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent appearance-none"
+              className="pl-10 pr-8 py-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent appearance-none"
             >
               <option value="all">All Types</option>
               <option value="milestone">Milestones</option>
@@ -308,7 +308,7 @@ const Rewards = () => {
                   <div className="flex space-x-2 pt-3">
                     <button
                       onClick={() => handleShareReward(reward)}
-                      className="flex-1 flex items-center justify-center space-x-2 py-2 px-3 bg-white dark:bg-accent-800 border border-accent-200 dark:border-accent-700 rounded-lg hover:bg-accent-50 dark:hover:bg-accent-700 transition-colors"
+                      className="flex-1 flex items-center justify-center space-x-2 py-2 px-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
                     >
                       <Share2 className="w-4 h-4" />
                       <span className="text-sm">Share</span>

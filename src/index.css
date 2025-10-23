@@ -6,11 +6,11 @@
 
 @layer base {
   * {
-    @apply border-accent-700;
+    @apply border-gray-200 dark:border-gray-700;
   }
   
   body {
-    @apply bg-accent-900 text-white font-inter;
+    @apply bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-white;
     font-feature-settings: "rlig" 1, "calt" 1;
   }
   
