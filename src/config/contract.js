@@ -202,8 +202,8 @@ export const CONTRACT_CONFIG = {
 export const GOAL_STATUS = {
   ACTIVE: 0,
   COMPLETED: 1,
-  EXPIRED: 2,
-  DELETED: 3
+  CANCELLED: 2,
+  EXPIRED: 3
 };
 
 export const TRANSACTION_TYPE = {

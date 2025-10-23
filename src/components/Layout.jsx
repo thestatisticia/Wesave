@@ -65,31 +65,65 @@ const Layout = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-primary-50 to-secondary-50 dark:from-accent-900 dark:to-accent-800">
-      {/* Mobile menu button */}
-      <div className="lg:hidden fixed top-4 left-4 z-50">
-        <button
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          className="p-2 rounded-xl bg-white dark:bg-accent-800 shadow-lg border border-accent-200 dark:border-accent-700"
-        >
-          {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+      {/* Mobile Header */}
+      <div className="lg:hidden fixed top-0 left-0 right-0 z-50 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 px-4 py-3">
+        <div className="flex items-center justify-between">
+          <button
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className="p-2 rounded-lg bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
+          >
+            {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
+          </button>
+          
+          <div className="flex items-center space-x-2">
+            <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
+              <Target className="w-5 h-5 text-white" />
+            </div>
+            <span className="text-lg font-semibold text-gray-900 dark:text-white">WeSave</span>
+          </div>
+
+          {/* Mobile Wallet Button */}
+          <div className="flex items-center space-x-2">
+            {isConnected ? (
+              <>
+                <div className="text-xs text-gray-600 dark:text-gray-400">
+                  {address.slice(0, 4)}...{address.slice(-4)}
+                </div>
+                <button
+                  onClick={handleLogout}
+                  className="p-1.5 bg-red-500 hover:bg-red-600 text-white rounded-md transition-colors"
+                >
+                  <LogOut className="w-4 h-4" />
+                </button>
+              </>
+            ) : (
+              <button
+                onClick={handleWalletAction}
+                disabled={isConnecting}
+                className="px-3 py-1.5 bg-blue-600 hover:bg-blue-700 disabled:bg-blue-400 text-white text-sm font-medium rounded-md transition-colors"
+              >
+                {isConnecting ? 'Connecting...' : 'Connect'}
+              </button>
+            )}
+          </div>
+        </div>
       </div>
 
-      {/* Wallet Connection Button - Top Right */}
-      <div className="fixed top-4 right-4 z-50">
+      {/* Desktop Wallet Connection - Top Right */}
+      <div className="hidden lg:block fixed top-4 right-4 z-50">
         {isConnected ? (
           <div className="flex items-center space-x-3">
             {/* Wallet Info */}
-            <div className="hidden sm:flex items-center space-x-2 px-3 py-2 bg-white dark:bg-accent-800 rounded-xl shadow-lg border border-accent-200 dark:border-accent-700">
-              <Wallet className="w-4 h-4 text-neon-green" />
+            <div className="flex items-center space-x-2 px-3 py-2 bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700">
+              <Wallet className="w-4 h-4 text-blue-600" />
               <div className="text-sm">
-                <p className="font-medium text-accent-900 dark:text-white">
+                <p className="font-medium text-gray-900 dark:text-white">
                   {address.slice(0, 6)}...{address.slice(-4)}
                 </p>
                 <div className="flex items-center space-x-1">
                   <div className={`w-2 h-2 rounded-full ${isCorrectNetwork ? 'bg-green-500' : 'bg-red-500'}`}></div>
-                  <p className="text-xs text-accent-600 dark:text-accent-400">
+                  <p className="text-xs text-gray-600 dark:text-gray-400">
                     {balance} CELO
                   </p>
                 </div>
@@ -101,7 +135,7 @@ const Layout = () => {
               <button
                 onClick={handleWalletAction}
                 disabled={isConnecting}
-                className="px-3 py-2 bg-orange-600 hover:bg-orange-700 disabled:bg-orange-400 text-white text-sm font-medium rounded-xl transition-colors"
+                className="px-3 py-2 bg-orange-600 hover:bg-orange-700 disabled:bg-orange-400 text-white text-sm font-medium rounded-lg transition-colors"
               >
                 {isConnecting ? 'Switching...' : 'Switch Network'}
               </button>
@@ -111,7 +145,7 @@ const Layout = () => {
             {isCorrectNetwork && parseFloat(balance) === 0 && (
               <button
                 onClick={() => setShowFaucet(true)}
-                className="px-3 py-2 bg-yellow-600 hover:bg-yellow-700 text-white text-sm font-medium rounded-xl transition-colors"
+                className="px-3 py-2 bg-yellow-600 hover:bg-yellow-700 text-white text-sm font-medium rounded-lg transition-colors"
               >
                 <Coins className="w-4 h-4 inline mr-1" />
                 Get Tokens
@@ -121,7 +155,7 @@ const Layout = () => {
             {/* Disconnect Button */}
             <button
               onClick={handleLogout}
-              className="p-2 bg-red-600 hover:bg-red-700 text-white rounded-xl transition-colors"
+              className="p-2 bg-red-600 hover:bg-red-700 text-white rounded-lg transition-colors"
               title="Disconnect Wallet"
             >
               <LogOut className="w-4 h-4" />
@@ -131,7 +165,7 @@ const Layout = () => {
           <button
             onClick={handleWalletAction}
             disabled={isConnecting}
-            className="flex items-center space-x-2 px-4 py-2 bg-gradient-neon text-white rounded-xl transition-all duration-200 hover:shadow-lg hover:shadow-neon-green/25 disabled:opacity-50"
+            className="flex items-center space-x-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors disabled:opacity-50"
           >
             <Wallet className="w-4 h-4" />
             <span className="font-medium">
@@ -142,23 +176,25 @@ const Layout = () => {
       </div>
 
       {/* Sidebar */}
-      <div className={`fixed inset-y-0 left-0 z-40 w-64 bg-accent-800 shadow-xl transform transition-transform duration-300 ease-in-out lg:translate-x-0 ${
+      <div className={`fixed inset-y-0 left-0 z-40 w-64 bg-white dark:bg-gray-800 shadow-lg transform transition-transform duration-300 ease-in-out lg:translate-x-0 ${
         isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'
       }`}>
         <div className="flex flex-col h-full">
-          {/* Logo */}
-          <div className="flex items-center justify-center h-16 px-6 border-b border-accent-700">
+          {/* Logo - Hidden on mobile since it's in header */}
+          <div className="hidden lg:flex items-center justify-center h-16 px-6 border-b border-gray-200 dark:border-gray-700">
             <div className="flex items-center space-x-2">
-              <div className="w-8 h-8 bg-gradient-neon rounded-lg flex items-center justify-center">
+              <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
                 <Target className="w-5 h-5 text-white" />
               </div>
-              <span className="text-xl font-bold gradient-text">WeSave</span>
+              <span className="text-xl font-semibold text-gray-900 dark:text-white">WeSave</span>
             </div>
           </div>
 
+          {/* Mobile Header Spacer */}
+          <div className="lg:hidden h-16"></div>
 
           {/* Navigation */}
-          <nav className="flex-1 px-4 py-6 space-y-2">
+          <nav className="flex-1 px-4 py-6 space-y-1">
             {navigation.map((item) => {
               const Icon = item.icon;
               return (
@@ -168,10 +204,10 @@ const Layout = () => {
                     navigate(item.href);
                     setIsMobileMenuOpen(false);
                   }}
-                  className={`w-full flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-200 ${
+                  className={`w-full flex items-center space-x-3 px-4 py-3 rounded-lg transition-colors ${
                     isActive(item.href)
-                      ? 'bg-gradient-neon text-white shadow-lg shadow-neon-green/25'
-                      : 'text-gray-300 hover:bg-accent-700 hover:text-white'
+                      ? 'bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300 border-r-2 border-blue-600'
+                      : 'text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700'
                   }`}
                 >
                   <Icon size={20} />
@@ -182,10 +218,10 @@ const Layout = () => {
           </nav>
 
           {/* Theme toggle and logout */}
-          <div className="p-4 border-t border-accent-700 space-y-2">
+          <div className="p-4 border-t border-gray-200 dark:border-gray-700 space-y-2">
             <button
               onClick={toggleTheme}
-              className="w-full flex items-center space-x-3 px-4 py-3 rounded-xl text-gray-300 hover:bg-accent-700 hover:text-white transition-all duration-200"
+              className="w-full flex items-center space-x-3 px-4 py-3 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
             >
               {isDark ? <Sun size={20} /> : <Moon size={20} />}
               <span className="font-medium">{isDark ? 'Light Mode' : 'Dark Mode'}</span>
@@ -194,7 +230,7 @@ const Layout = () => {
             {isConnected && (
               <button
                 onClick={handleLogout}
-                className="w-full flex items-center space-x-3 px-4 py-3 rounded-xl text-red-400 hover:bg-red-900/20 hover:text-red-300 transition-all duration-200"
+                className="w-full flex items-center space-x-3 px-4 py-3 rounded-lg text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors"
               >
                 <LogOut size={20} />
                 <span className="font-medium">Disconnect</span>
@@ -206,7 +242,7 @@ const Layout = () => {
 
       {/* Main content */}
       <div className="lg:ml-64">
-        <main className="min-h-screen bg-gradient-to-br from-primary-50 to-secondary-50 dark:from-accent-900 dark:to-accent-800">
+        <main className="min-h-screen bg-gray-50 dark:bg-gray-900">
           <Outlet />
         </main>
       </div>

@@ -223,7 +223,7 @@ contract WeSave is ERC721, ERC721URIStorage, ERC721Burnable, Ownable, Reentrancy
     }
 
     /**
-     * @dev Make a deposit to a goal
+     * @dev Make a                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               to a goal
      * @param goalId Goal ID
      * @param description Transaction description
      */
@@ -342,9 +342,17 @@ contract WeSave is ERC721, ERC721URIStorage, ERC721Burnable, Ownable, Reentrancy
         require(goals[goalId].status == GoalStatus.Active, "Goal not active");
         require(goals[goalId].currentAmount >= goals[goalId].targetAmount, "Goal not reached");
 
+        uint256 completionAmount = goals[goalId].currentAmount;
+        
         goals[goalId].status = GoalStatus.Completed;
         goals[goalId].completedAt = block.timestamp;
         completedGoalsCount[msg.sender]++;
+
+        // Automatically transfer funds back to user upon completion
+        if (completionAmount > 0) {
+            goals[goalId].currentAmount = 0; // Reset current amount
+            payable(msg.sender).transfer(completionAmount);
+        }
 
         // Mint completion NFT
         _tokenIds += 1;
@@ -358,7 +366,7 @@ contract WeSave is ERC721, ERC721URIStorage, ERC721Burnable, Ownable, Reentrancy
         ));
         _setTokenURI(tokenId, uri);
 
-        emit GoalCompleted(goalId, msg.sender, goals[goalId].currentAmount, block.timestamp);
+        emit GoalCompleted(goalId, msg.sender, completionAmount, block.timestamp);
     }
 
     /**
@@ -515,6 +523,12 @@ contract WeSave is ERC721, ERC721URIStorage, ERC721Burnable, Ownable, Reentrancy
             goals[goalId].status = GoalStatus.Completed;
             goals[goalId].completedAt = block.timestamp;
             completedGoalsCount[goals[goalId].owner]++;
+            
+            // Automatically transfer funds back to user upon completion
+            if (currentAmount > 0) {
+                goals[goalId].currentAmount = 0; // Reset current amount
+                payable(goals[goalId].owner).transfer(currentAmount);
+            }
             
             emit GoalCompleted(goalId, goals[goalId].owner, currentAmount, block.timestamp);
         }

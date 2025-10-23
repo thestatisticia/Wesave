@@ -103,14 +103,14 @@ const Dashboard = () => {
 
 
   return (
-    <div className="min-h-screen p-6 bg-transparent">
+    <div className="min-h-screen p-4 lg:p-6 bg-transparent">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
-        <div className="mb-8">
-          <h1 className="text-3xl md:text-4xl font-bold text-accent-900 dark:text-white mb-2">
+        <div className="mb-6 lg:mb-8">
+          <h1 className="text-2xl lg:text-3xl xl:text-4xl font-bold text-gray-900 dark:text-white mb-2">
             {isConnected ? 'Welcome back! 👋' : 'Welcome to WeSave! 🎯'}
           </h1>
-          <p className="text-accent-600 dark:text-accent-400">
+          <p className="text-gray-600 dark:text-gray-400 text-sm lg:text-base">
             {isConnected 
               ? 'Track your progress and manage your savings goals'
               : 'Connect your wallet to start managing your savings goals'
@@ -120,102 +120,104 @@ const Dashboard = () => {
 
         {isConnected ? (
           <>
-            {/* Stats Cards - Only show when wallet is connected */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-              <div className="card glass">
+            {/* Stats Cards - Responsive grid */}
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6 mb-6 lg:mb-8">
+              <div className="bg-white dark:bg-gray-800 rounded-lg p-4 lg:p-6 shadow-sm border border-gray-200 dark:border-gray-700">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-sm text-accent-600 dark:text-accent-400 mb-1">Total Saved</p>
-                    <p className="text-2xl font-bold text-accent-900 dark:text-white">
+                    <p className="text-xs lg:text-sm text-gray-600 dark:text-gray-400 mb-1">Total Saved</p>
+                    <p className="text-lg lg:text-2xl font-bold text-gray-900 dark:text-white">
                       {formatCurrency(totalSaved)}
                     </p>
                   </div>
-                  <div className="w-12 h-12 bg-green-500 rounded-xl flex items-center justify-center">
-                    <Wallet className="w-6 h-6 text-white" />
+                  <div className="w-8 h-8 lg:w-12 lg:h-12 bg-green-500 rounded-lg flex items-center justify-center">
+                    <Wallet className="w-4 h-4 lg:w-6 lg:h-6 text-white" />
                   </div>
                 </div>
               </div>
 
-              <div className="card glass">
+              <div className="bg-white dark:bg-gray-800 rounded-lg p-4 lg:p-6 shadow-sm border border-gray-200 dark:border-gray-700">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-sm text-accent-600 dark:text-accent-400 mb-1">Active Goals</p>
-                    <p className="text-2xl font-bold text-accent-900 dark:text-white">
+                    <p className="text-xs lg:text-sm text-gray-600 dark:text-gray-400 mb-1">Active Goals</p>
+                    <p className="text-lg lg:text-2xl font-bold text-gray-900 dark:text-white">
                       {activeGoals}
                     </p>
                   </div>
-                  <div className="w-12 h-12 bg-cyan-500 rounded-xl flex items-center justify-center">
-                    <Target className="w-6 h-6 text-white" />
+                  <div className="w-8 h-8 lg:w-12 lg:h-12 bg-blue-500 rounded-lg flex items-center justify-center">
+                    <Target className="w-4 h-4 lg:w-6 lg:h-6 text-white" />
                   </div>
                 </div>
               </div>
 
-              <div className="card glass">
+              <div className="bg-white dark:bg-gray-800 rounded-lg p-4 lg:p-6 shadow-sm border border-gray-200 dark:border-gray-700">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-sm text-accent-600 dark:text-accent-400 mb-1">Completed</p>
-                    <p className="text-2xl font-bold text-accent-900 dark:text-white">
+                    <p className="text-xs lg:text-sm text-gray-600 dark:text-gray-400 mb-1">Completed</p>
+                    <p className="text-lg lg:text-2xl font-bold text-gray-900 dark:text-white">
                       {completedGoals}
                     </p>
                   </div>
-                  <div className="w-12 h-12 bg-purple-500 rounded-xl flex items-center justify-center">
-                    <Award className="w-6 h-6 text-white" />
+                  <div className="w-8 h-8 lg:w-12 lg:h-12 bg-purple-500 rounded-lg flex items-center justify-center">
+                    <Award className="w-4 h-4 lg:w-6 lg:h-6 text-white" />
                   </div>
                 </div>
               </div>
 
-              <div className="card glass">
+              <div className="bg-white dark:bg-gray-800 rounded-lg p-4 lg:p-6 shadow-sm border border-gray-200 dark:border-gray-700">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-sm text-accent-600 dark:text-accent-400 mb-1">Progress</p>
-                    <p className="text-2xl font-bold text-accent-900 dark:text-white">
+                    <p className="text-xs lg:text-sm text-gray-600 dark:text-gray-400 mb-1">Progress</p>
+                    <p className="text-lg lg:text-2xl font-bold text-gray-900 dark:text-white">
                       {Math.round((totalSaved / totalTarget) * 100)}%
                     </p>
                   </div>
-                  <div className="w-12 h-12 bg-blue-500 rounded-xl flex items-center justify-center">
-                    <TrendingUp className="w-6 h-6 text-white" />
+                  <div className="w-8 h-8 lg:w-12 lg:h-12 bg-indigo-500 rounded-lg flex items-center justify-center">
+                    <TrendingUp className="w-4 h-4 lg:w-6 lg:h-6 text-white" />
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* Goals List - Only show when wallet is connected */}
-            <div className="card glass mb-8">
-              <h3 className="text-xl font-bold text-accent-900 dark:text-white mb-4">Your Goals ({goals.length})</h3>
-              {goals.map((goal) => (
-                <div key={goal.id} className="glass p-4 rounded-lg mb-3 border border-white/20">
-                  <h4 className="text-lg font-bold text-accent-900 dark:text-white mb-1">{goal.title}</h4>
-                  <p className="text-sm text-accent-600 dark:text-accent-400 mb-1">{goal.category}</p>
-                  <p className="text-sm text-accent-600 dark:text-accent-400">
-                    {formatCurrency(goal.currentAmount)} / {formatCurrency(goal.targetAmount)} ({(goal.currentAmount / goal.targetAmount * 100).toFixed(1)}%)
-                  </p>
-                </div>
-              ))}
+            {/* Goals List - Mobile optimized */}
+            <div className="bg-white dark:bg-gray-800 rounded-lg p-4 lg:p-6 shadow-sm border border-gray-200 dark:border-gray-700 mb-6 lg:mb-8">
+              <h3 className="text-lg lg:text-xl font-bold text-gray-900 dark:text-white mb-4">Your Goals ({goals.length})</h3>
+              <div className="space-y-3">
+                {goals.map((goal) => (
+                  <div key={goal.id} className="bg-gray-50 dark:bg-gray-700 p-3 lg:p-4 rounded-lg border border-gray-200 dark:border-gray-600">
+                    <h4 className="text-base lg:text-lg font-semibold text-gray-900 dark:text-white mb-1">{goal.title}</h4>
+                    <p className="text-xs lg:text-sm text-gray-600 dark:text-gray-400 mb-1">{goal.category}</p>
+                    <p className="text-xs lg:text-sm text-gray-600 dark:text-gray-400">
+                      {formatCurrency(goal.currentAmount)} / {formatCurrency(goal.targetAmount)} ({(goal.currentAmount / goal.targetAmount * 100).toFixed(1)}%)
+                    </p>
+                  </div>
+                ))}
+              </div>
             </div>
           </>
         ) : (
-          /* Welcome Content - Show when wallet is not connected */
-          <div className="card glass-modal text-center mb-8">
-            <div className="text-6xl mb-5">🎯</div>
-            <h2 className="text-3xl font-bold text-accent-900 dark:text-white mb-4">Connect Your Wallet to Get Started</h2>
-            <p className="text-lg text-accent-600 dark:text-accent-400 mb-6 max-w-2xl mx-auto">
+          /* Welcome Content - Mobile optimized */
+          <div className="bg-white dark:bg-gray-800 rounded-lg p-6 lg:p-8 shadow-sm border border-gray-200 dark:border-gray-700 mb-6 lg:mb-8 text-center">
+            <div className="text-4xl lg:text-6xl mb-4 lg:mb-5">🎯</div>
+            <h2 className="text-xl lg:text-3xl font-bold text-gray-900 dark:text-white mb-3 lg:mb-4">Connect Your Wallet to Get Started</h2>
+            <p className="text-sm lg:text-lg text-gray-600 dark:text-gray-400 mb-4 lg:mb-6 max-w-2xl mx-auto">
               Connect your MetaMask wallet to Celo Alfajores testnet to start creating and managing your savings goals.
             </p>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-              <div className="glass p-6 rounded-xl">
-                <div className="text-4xl mb-3">💎</div>
-                <h3 className="text-xl font-bold text-accent-900 dark:text-white mb-2">Create Goals</h3>
-                <p className="text-sm text-accent-600 dark:text-accent-400">Set personalized savings targets</p>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-6 max-w-4xl mx-auto">
+              <div className="bg-gray-50 dark:bg-gray-700 p-4 lg:p-6 rounded-lg">
+                <div className="text-2xl lg:text-4xl mb-2 lg:mb-3">💎</div>
+                <h3 className="text-base lg:text-xl font-semibold text-gray-900 dark:text-white mb-1 lg:mb-2">Create Goals</h3>
+                <p className="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Set personalized savings targets</p>
               </div>
-              <div className="glass p-6 rounded-xl">
-                <div className="text-4xl mb-3">📊</div>
-                <h3 className="text-xl font-bold text-accent-900 dark:text-white mb-2">Track Progress</h3>
-                <p className="text-sm text-accent-600 dark:text-accent-400">Monitor your savings journey</p>
+              <div className="bg-gray-50 dark:bg-gray-700 p-4 lg:p-6 rounded-lg">
+                <div className="text-2xl lg:text-4xl mb-2 lg:mb-3">📊</div>
+                <h3 className="text-base lg:text-xl font-semibold text-gray-900 dark:text-white mb-1 lg:mb-2">Track Progress</h3>
+                <p className="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Monitor your savings journey</p>
               </div>
-              <div className="glass p-6 rounded-xl">
-                <div className="text-4xl mb-3">🏆</div>
-                <h3 className="text-xl font-bold text-accent-900 dark:text-white mb-2">Earn Rewards</h3>
-                <p className="text-sm text-accent-600 dark:text-accent-400">Get NFT badges for milestones</p>
+              <div className="bg-gray-50 dark:bg-gray-700 p-4 lg:p-6 rounded-lg">
+                <div className="text-2xl lg:text-4xl mb-2 lg:mb-3">🏆</div>
+                <h3 className="text-base lg:text-xl font-semibold text-gray-900 dark:text-white mb-1 lg:mb-2">Earn Rewards</h3>
+                <p className="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Get NFT badges for milestones</p>
               </div>
             </div>
           </div>
@@ -223,24 +225,24 @@ const Dashboard = () => {
 
         {/* Search and Filter - Only show when wallet is connected */}
         {isConnected && (
-        <div className="flex flex-col sm:flex-row gap-4 mb-8">
+        <div className="flex flex-col sm:flex-row gap-3 lg:gap-4 mb-6 lg:mb-8">
           <div className="relative flex-1">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-accent-400 w-5 h-5" />
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4 lg:w-5 lg:h-5" />
             <input
               type="text"
               placeholder="Search goals..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-10 pr-4 py-3 glass border border-white/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent text-accent-900 dark:text-white placeholder-accent-500 dark:placeholder-accent-400"
+              className="w-full pl-9 lg:pl-10 pr-4 py-2.5 lg:py-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 text-sm lg:text-base"
             />
           </div>
           
           <div className="relative">
-            <Filter className="absolute left-3 top-1/2 transform -translate-y-1/2 text-accent-400 w-5 h-5" />
+            <Filter className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4 lg:w-5 lg:h-5" />
             <select
               value={filterStatus}
               onChange={(e) => setFilterStatus(e.target.value)}
-              className="pl-10 pr-8 py-3 glass border border-white/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent appearance-none text-accent-900 dark:text-white"
+              className="pl-9 lg:pl-10 pr-8 py-2.5 lg:py-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent appearance-none text-gray-900 dark:text-white text-sm lg:text-base"
             >
               <option value="all">All Goals</option>
               <option value="active">Active</option>
@@ -251,18 +253,18 @@ const Dashboard = () => {
 
           <button
             onClick={() => fetchGoals()}
-            className="btn-secondary flex items-center space-x-2 px-4 py-3"
+            className="flex items-center justify-center space-x-2 px-4 py-2.5 lg:py-3 bg-gray-600 hover:bg-gray-700 text-white rounded-lg transition-colors text-sm lg:text-base"
             disabled={isLoading}
           >
-            <TrendingUp className="w-5 h-5" />
+            <TrendingUp className="w-4 h-4 lg:w-5 lg:h-5" />
             <span>{isLoading ? 'Refreshing...' : 'Refresh'}</span>
           </button>
 
           <button
             onClick={() => navigate('/app/goal/new')}
-            className="btn-primary flex items-center space-x-2 px-6 py-3"
+            className="flex items-center justify-center space-x-2 px-4 lg:px-6 py-2.5 lg:py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors text-sm lg:text-base"
           >
-            <Plus className="w-5 h-5" />
+            <Plus className="w-4 h-4 lg:w-5 lg:h-5" />
             <span>Create Goal</span>
           </button>
         </div>
@@ -271,7 +273,7 @@ const Dashboard = () => {
         {/* Goals Grid - Only show when wallet is connected */}
         {isConnected && (
           <>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 lg:gap-6">
           {filteredGoals.map((goal) => {
             const percentage = Math.round((goal.currentAmount / goal.targetAmount) * 100);
             const daysLeft = getDaysLeft(goal.deadline);
@@ -279,7 +281,7 @@ const Dashboard = () => {
             return (
               <div
                 key={goal.id}
-                className="card hover:shadow-2xl transition-all duration-300 group relative"
+                className="bg-white dark:bg-gray-800 rounded-lg p-4 lg:p-6 shadow-sm border border-gray-200 dark:border-gray-700 hover:shadow-md transition-shadow group relative"
               >
                 {/* Delete Button */}
                 <button
@@ -287,7 +289,7 @@ const Dashboard = () => {
                     e.stopPropagation();
                     handleDeleteGoal(goal.id, goal.title);
                   }}
-                  className="absolute top-3 right-3 p-2 text-red-500 hover:text-red-700 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-full transition-colors opacity-0 group-hover:opacity-100"
+                  className="absolute top-3 right-3 p-1.5 text-red-500 hover:text-red-700 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-md transition-colors opacity-0 group-hover:opacity-100"
                   title="Delete Goal"
                 >
                   <Trash2 className="w-4 h-4" />
@@ -298,15 +300,15 @@ const Dashboard = () => {
                 onClick={() => navigate(`/app/goal/${goal.id}`)}
               >
                 <div className="flex items-start justify-between mb-4">
-                  <div className="flex-1">
-                    <h3 className="text-lg font-semibold text-accent-900 dark:text-white mb-1">
+                  <div className="flex-1 pr-2">
+                    <h3 className="text-base lg:text-lg font-semibold text-gray-900 dark:text-white mb-1">
                         {goal.title}
                     </h3>
-                    <p className="text-sm text-accent-600 dark:text-accent-400">
+                    <p className="text-xs lg:text-sm text-gray-600 dark:text-gray-400">
                       {goal.category}
                     </p>
                   </div>
-                  <div className="w-16 h-16">
+                  <div className="w-12 h-12 lg:w-16 lg:h-16">
                     <CircularProgressbar
                       value={percentage}
                       text={`${percentage}%`}
@@ -314,7 +316,7 @@ const Dashboard = () => {
                         pathColor: getProgressColor(percentage),
                         textColor: getProgressColor(percentage),
                         trailColor: '#e5e7eb',
-                        textSize: '16px',
+                        textSize: '12px',
                         fontWeight: 'bold',
                       })}
                     />
@@ -323,13 +325,13 @@ const Dashboard = () => {
 
                 <div className="space-y-3">
                   <div className="flex justify-between items-center">
-                    <span className="text-sm text-accent-600 dark:text-accent-400">Progress</span>
-                    <span className="text-sm font-medium text-accent-900 dark:text-white">
+                    <span className="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Progress</span>
+                    <span className="text-xs lg:text-sm font-medium text-gray-900 dark:text-white">
                       {formatCurrency(goal.currentAmount)} / {formatCurrency(goal.targetAmount)}
                     </span>
                   </div>
 
-                  <div className="w-full bg-accent-200 dark:bg-accent-700 rounded-full h-2">
+                  <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
                     <div
                       className="h-2 rounded-full transition-all duration-500"
                       style={{
@@ -339,21 +341,21 @@ const Dashboard = () => {
                     />
                   </div>
 
-                  <div className="flex justify-between items-center text-sm">
-                    <div className="flex items-center space-x-1 text-accent-600 dark:text-accent-400">
-                      <Calendar className="w-4 h-4" />
+                  <div className="flex justify-between items-center text-xs lg:text-sm">
+                    <div className="flex items-center space-x-1 text-gray-600 dark:text-gray-400">
+                      <Calendar className="w-3 h-3 lg:w-4 lg:h-4" />
                       <span>{daysLeft} days left</span>
                     </div>
-                    <div className="flex items-center space-x-1 text-primary-600">
-                      <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                    <div className="flex items-center space-x-1 text-blue-600">
+                      <ArrowRight className="w-3 h-3 lg:w-4 lg:h-4 group-hover:translate-x-1 transition-transform" />
                     </div>
                   </div>
                 </div>
 
                 {goal.status === 'completed' && (
                   <div className="mt-4 p-2 bg-green-50 dark:bg-green-900/20 rounded-lg">
-                    <p className="text-sm text-green-600 dark:text-green-400 font-medium text-center">
-                      🎉 Goal Completed!
+                    <p className="text-xs lg:text-sm text-green-600 dark:text-green-400 font-medium text-center">
+                      🎉 Goal Completed! Funds returned to wallet
                     </p>
                   </div>
                 )}
@@ -364,14 +366,14 @@ const Dashboard = () => {
         </div>
 
         {filteredGoals.length === 0 && (
-          <div className="text-center py-12">
-            <div className="w-24 h-24 bg-accent-100 dark:bg-accent-800 rounded-full flex items-center justify-center mx-auto mb-4">
-              <Target className="w-12 h-12 text-accent-400" />
+          <div className="text-center py-8 lg:py-12">
+            <div className="w-16 h-16 lg:w-24 lg:h-24 bg-gray-100 dark:bg-gray-800 rounded-full flex items-center justify-center mx-auto mb-4">
+              <Target className="w-8 h-8 lg:w-12 lg:h-12 text-gray-400" />
             </div>
-            <h3 className="text-xl font-semibold text-accent-900 dark:text-white mb-2">
+            <h3 className="text-lg lg:text-xl font-semibold text-gray-900 dark:text-white mb-2">
               No goals found
             </h3>
-            <p className="text-accent-600 dark:text-accent-400 mb-6">
+            <p className="text-sm lg:text-base text-gray-600 dark:text-gray-400 mb-4 lg:mb-6">
               {searchTerm || filterStatus !== 'all' 
                 ? 'Try adjusting your search or filter criteria'
                 : 'Start your savings journey by creating your first goal'
@@ -379,9 +381,9 @@ const Dashboard = () => {
             </p>
             <button
               onClick={() => navigate('/app/goal/new')}
-              className="btn-primary flex items-center space-x-2 mx-auto"
+              className="flex items-center justify-center space-x-2 px-4 lg:px-6 py-2.5 lg:py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors mx-auto text-sm lg:text-base"
             >
-              <Plus className="w-5 h-5" />
+              <Plus className="w-4 h-4 lg:w-5 lg:h-5" />
               <span>Create Your First Goal</span>
             </button>
           </div>

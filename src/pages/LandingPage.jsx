@@ -72,37 +72,37 @@ const LandingPage = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-accent-900">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
       {/* Header */}
-      <header className="absolute top-0 left-0 right-0 z-50 p-6">
+      <header className="absolute top-0 left-0 right-0 z-50 p-4 lg:p-6">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <div className="flex items-center space-x-2">
-            <div className="w-10 h-10 bg-gradient-neon rounded-xl flex items-center justify-center">
-              <Target className="w-6 h-6 text-white" />
+            <div className="w-8 h-8 lg:w-10 lg:h-10 bg-blue-600 rounded-lg flex items-center justify-center">
+              <Target className="w-5 h-5 lg:w-6 lg:h-6 text-white" />
             </div>
-            <span className="text-2xl font-bold gradient-text">WeSave</span>
+            <span className="text-lg lg:text-2xl font-bold text-gray-900 dark:text-white">WeSave</span>
           </div>
           
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center space-x-2 lg:space-x-4">
             <button
               onClick={toggleTheme}
-              className="p-2 rounded-xl bg-accent-800 shadow-lg border border-accent-700 hover:shadow-xl transition-all duration-300"
+              className="p-2 rounded-lg bg-white dark:bg-gray-800 shadow-sm border border-gray-200 dark:border-gray-700 hover:shadow-md transition-all duration-300"
             >
-              <Sparkles className="w-5 h-5 text-neon-green" />
+              <Sparkles className="w-4 h-4 lg:w-5 lg:h-5 text-blue-600" />
             </button>
             
-            <div className="flex items-center space-x-3">
+            <div className="flex items-center space-x-2 lg:space-x-3">
               {/* Wallet Info (if connected) */}
               {isConnected && (
-                <div className="hidden sm:flex items-center space-x-2 px-3 py-2 bg-accent-800 rounded-xl shadow-lg border border-accent-700">
-                  <Wallet className="w-4 h-4 text-neon-green" />
+                <div className="hidden sm:flex items-center space-x-2 px-3 py-2 bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700">
+                  <Wallet className="w-4 h-4 text-blue-600" />
                   <div className="text-sm">
-                    <p className="font-medium text-white">
+                    <p className="font-medium text-gray-900 dark:text-white">
                       {address.slice(0, 6)}...{address.slice(-4)}
                     </p>
                     <div className="flex items-center space-x-1">
                       <div className={`w-2 h-2 rounded-full ${isCorrectNetwork ? 'bg-green-500' : 'bg-red-500'}`}></div>
-                      <p className="text-xs text-gray-400">
+                      <p className="text-xs text-gray-600 dark:text-gray-400">
                         {balance} CELO
                       </p>
                     </div>
@@ -114,10 +114,10 @@ const LandingPage = () => {
               <button
                 onClick={handleConnectWallet}
                 disabled={isConnecting}
-                className="btn-secondary flex items-center space-x-2"
+                className="flex items-center space-x-2 px-3 lg:px-4 py-2 bg-gray-600 hover:bg-gray-700 disabled:bg-gray-400 text-white rounded-lg transition-colors text-sm lg:text-base"
               >
                 <Wallet className="w-4 h-4" />
-                <span>
+                <span className="hidden sm:inline">
                   {isConnecting 
                     ? 'Connecting...' 
                     : !isConnected 
@@ -127,14 +127,18 @@ const LandingPage = () => {
                         : 'Connected'
                   }
                 </span>
+                <span className="sm:hidden">
+                  {isConnecting ? 'Connecting...' : 'Connect'}
+                </span>
               </button>
 
               {/* Go to App Button */}
               <button
                 onClick={handleGetStarted}
-                className="btn-primary flex items-center space-x-2"
+                className="flex items-center space-x-2 px-3 lg:px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors text-sm lg:text-base"
               >
-                <span>Go to App</span>
+                <span className="hidden sm:inline">Go to App</span>
+                <span className="sm:hidden">App</span>
                 <ArrowRight className="w-4 h-4" />
               </button>
             </div>
@@ -143,51 +147,51 @@ const LandingPage = () => {
       </header>
 
       {/* Hero Section */}
-      <section className="pt-32 pb-20 px-6">
+      <section className="pt-24 lg:pt-32 pb-12 lg:pb-20 px-4 lg:px-6">
         <div className="max-w-7xl mx-auto text-center">
-          <div className="mb-8">
-            <h1 className="text-5xl md:text-7xl font-bold mb-6">
-              <span className="gradient-text">WeSave</span>
+          <div className="mb-6 lg:mb-8">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 lg:mb-6">
+              <span className="text-blue-600">WeSave</span>
               <br />
-              <span className="text-white">Together</span>
+              <span className="text-gray-900 dark:text-white">Together</span>
             </h1>
-            <p className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-base sm:text-lg lg:text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto leading-relaxed">
               Transform your savings journey with decentralized goal tracking, 
               visual progress rings, and rewarding NFT achievements on Celo.
             </p>
           </div>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-6 mb-16">
+          <div className="flex flex-col sm:flex-row items-center justify-center space-y-3 sm:space-y-0 sm:space-x-4 lg:space-x-6 mb-12 lg:mb-16">
             <button
               onClick={handleGetStarted}
-              className="btn-primary text-lg px-8 py-4 flex items-center space-x-3"
+              className="flex items-center justify-center space-x-2 px-6 lg:px-8 py-3 lg:py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors text-base lg:text-lg w-full sm:w-auto"
             >
               <span>Start Saving Today</span>
-              <ArrowRight className="w-5 h-5" />
+              <ArrowRight className="w-4 h-4 lg:w-5 lg:h-5" />
             </button>
             
-            <button className="btn-secondary text-lg px-8 py-4 flex items-center space-x-3">
+            <button className="flex items-center justify-center space-x-2 px-6 lg:px-8 py-3 lg:py-4 bg-gray-600 hover:bg-gray-700 text-white rounded-lg transition-colors text-base lg:text-lg w-full sm:w-auto">
               <span>Learn More</span>
-              <TrendingUp className="w-5 h-5" />
+              <TrendingUp className="w-4 h-4 lg:w-5 lg:h-5" />
             </button>
           </div>
 
           {/* Hero Image/Animation */}
           <div className="relative max-w-4xl mx-auto">
             <div className="relative z-10">
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
                 {[1, 2, 3].map((i) => (
-                  <div key={i} className="card animate-fade-in" style={{ animationDelay: `${i * 0.2}s` }}>
-                    <div className="w-24 h-24 mx-auto mb-4 relative">
-                      <div className="w-full h-full rounded-full bg-gradient-emerald flex items-center justify-center animate-pulse-ring">
-                        <Target className="w-12 h-12 text-white" />
+                  <div key={i} className="bg-white dark:bg-gray-800 rounded-lg p-4 lg:p-6 shadow-sm border border-gray-200 dark:border-gray-700">
+                    <div className="w-16 h-16 lg:w-24 lg:h-24 mx-auto mb-3 lg:mb-4 relative">
+                      <div className="w-full h-full rounded-full bg-blue-600 flex items-center justify-center">
+                        <Target className="w-8 h-8 lg:w-12 lg:h-12 text-white" />
                       </div>
                     </div>
-                    <h3 className="text-lg font-semibold mb-2">Goal {i}</h3>
-                    <p className="text-sm text-accent-600 dark:text-accent-400">$1,000 Target</p>
-                    <div className="mt-4 w-full bg-accent-200 dark:bg-accent-700 rounded-full h-2">
+                    <h3 className="text-base lg:text-lg font-semibold text-gray-900 dark:text-white mb-2">Goal {i}</h3>
+                    <p className="text-xs lg:text-sm text-gray-600 dark:text-gray-400 mb-3 lg:mb-4">$1,000 Target</p>
+                    <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
                       <div 
-                        className="bg-gradient-emerald h-2 rounded-full transition-all duration-1000"
+                        className="bg-blue-600 h-2 rounded-full transition-all duration-1000"
                         style={{ width: `${i * 30}%` }}
                       />
                     </div>
@@ -200,28 +204,28 @@ const LandingPage = () => {
       </section>
 
       {/* Features Section */}
-      <section className="py-20 px-6 bg-accent-800/50">
+      <section className="py-12 lg:py-20 px-4 lg:px-6 bg-gray-100 dark:bg-gray-800">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-6">
-              <span className="gradient-text">Why Choose</span> WeSave?
+          <div className="text-center mb-12 lg:mb-16">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold mb-4 lg:mb-6">
+              <span className="text-blue-600">Why Choose</span> WeSave?
             </h2>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+            <p className="text-base sm:text-lg lg:text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
               Experience the future of decentralized savings with innovative features 
               designed to make your financial goals achievable and rewarding.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
             {features.map((feature, index) => {
               const Icon = feature.icon;
               return (
-                <div key={index} className="card text-center hover:scale-105 transition-transform duration-300">
-                  <div className="w-16 h-16 bg-gradient-neon rounded-2xl flex items-center justify-center mx-auto mb-6">
-                    <Icon className="w-8 h-8 text-white" />
+                <div key={index} className="bg-white dark:bg-gray-800 rounded-lg p-4 lg:p-6 shadow-sm border border-gray-200 dark:border-gray-700 text-center hover:shadow-md transition-shadow">
+                  <div className="w-12 h-12 lg:w-16 lg:h-16 bg-blue-600 rounded-lg flex items-center justify-center mx-auto mb-4 lg:mb-6">
+                    <Icon className="w-6 h-6 lg:w-8 lg:h-8 text-white" />
                   </div>
-                  <h3 className="text-xl font-semibold text-white mb-4">{feature.title}</h3>
-                  <p className="text-gray-300">{feature.description}</p>
+                  <h3 className="text-base lg:text-xl font-semibold text-gray-900 dark:text-white mb-3 lg:mb-4">{feature.title}</h3>
+                  <p className="text-sm lg:text-base text-gray-600 dark:text-gray-400">{feature.description}</p>
                 </div>
               );
             })}
@@ -230,15 +234,15 @@ const LandingPage = () => {
       </section>
 
       {/* Stats Section */}
-      <section className="py-20 px-6">
+      <section className="py-12 lg:py-20 px-4 lg:px-6">
         <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
             {stats.map((stat, index) => (
               <div key={index} className="text-center">
-                <div className="text-4xl md:text-5xl font-bold gradient-text mb-2">
+                <div className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-blue-600 mb-2">
                   {stat.value}
                 </div>
-                <div className="text-lg text-accent-600 dark:text-accent-400">
+                <div className="text-sm lg:text-lg text-gray-600 dark:text-gray-400">
                   {stat.label}
                 </div>
               </div>
@@ -248,34 +252,34 @@ const LandingPage = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 px-6 bg-gradient-emerald">
+      <section className="py-12 lg:py-20 px-4 lg:px-6 bg-blue-600">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-white mb-4 lg:mb-6">
             Ready to Start Your Savings Journey?
           </h2>
-          <p className="text-xl text-white/90 mb-8">
+          <p className="text-base sm:text-lg lg:text-xl text-blue-100 mb-6 lg:mb-8">
             Join thousands of users already achieving their financial goals with WeSave.
           </p>
           <button
             onClick={handleGetStarted}
-            className="bg-white text-primary-600 hover:bg-primary-50 font-semibold px-8 py-4 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-lg flex items-center space-x-3 mx-auto"
+            className="bg-white text-blue-600 hover:bg-gray-50 font-semibold px-6 lg:px-8 py-3 lg:py-4 rounded-lg transition-colors text-base lg:text-lg flex items-center justify-center space-x-2 mx-auto"
           >
             <span>Get Started Now</span>
-            <ArrowRight className="w-5 h-5" />
+            <ArrowRight className="w-4 h-4 lg:w-5 lg:h-5" />
           </button>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="py-12 px-6 bg-accent-900 dark:bg-accent-950">
+      <footer className="py-8 lg:py-12 px-4 lg:px-6 bg-gray-900 dark:bg-gray-950">
         <div className="max-w-7xl mx-auto text-center">
-          <div className="flex items-center justify-center space-x-2 mb-6">
-            <div className="w-8 h-8 bg-gradient-emerald rounded-lg flex items-center justify-center">
-              <Target className="w-5 h-5 text-white" />
+          <div className="flex items-center justify-center space-x-2 mb-4 lg:mb-6">
+            <div className="w-6 h-6 lg:w-8 lg:h-8 bg-blue-600 rounded-lg flex items-center justify-center">
+              <Target className="w-4 h-4 lg:w-5 lg:h-5 text-white" />
             </div>
-            <span className="text-xl font-bold gradient-text">WeSave</span>
+            <span className="text-lg lg:text-xl font-bold text-white">WeSave</span>
           </div>
-          <p className="text-accent-400">
+          <p className="text-sm lg:text-base text-gray-400">
             Built on Celo • Powered by DeFi • Secured by Blockchain
           </p>
         </div>

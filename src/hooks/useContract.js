@@ -30,7 +30,7 @@ export const useContract = () => {
       targetAmount: parseFloat(formatEther(contractGoal.targetAmount)),
       currentAmount: parseFloat(formatEther(contractGoal.currentAmount)),
       deadline: new Date(Number(contractGoal.deadline) * 1000),
-      status: Object.keys(GOAL_STATUS)[contractGoal.status],
+      status: Object.keys(GOAL_STATUS)[contractGoal.status].toLowerCase(),
       category: contractGoal.category,
       owner: contractGoal.owner,
       createdAt: new Date(Number(contractGoal.createdAt) * 1000),
